@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "src/pages/index/index",
+    "src/pages/home/home",
+    "src/pages/authorize/authorize",
+    "src/pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "登入授权",
+    "navigationBarTextStyle":"black"
+  }
+}
