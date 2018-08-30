@@ -44,7 +44,7 @@ Page({
       wx.getUserInfo({
         withCredentials: true,
         success: function (res) {
-          that.setOpenid(res.userInfo);
+          app.setOpenid(res.userInfo);
         },
         fail: function () {
           //获取用户信息失败后。请跳转授权页面
@@ -62,31 +62,5 @@ Page({
         }
       });
     }
-  },
-  setOpenid(userInfo){
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if (res.code) {
-          userInfo.loginCode = res.code;
-          requestApi('wechat/login', 'POST', userInfo).then(response => {
-            if (response.data.code === 200) {
-              app.globalData.openId=response.data.data.openid;
-              console.log(app.globalData);
-            } else {
-              wx.showToast({
-                title: response.data.msg,
-                icon: 'none',
-                duration: 1000
-              })
-            }
-          }, err => {
-            console.log(err)
-          })
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      } 
-    });
   }
 })
