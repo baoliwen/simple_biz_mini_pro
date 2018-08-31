@@ -1,8 +1,7 @@
 <view class="index-container">
     <view class="search-div">
-        <input type="text" style="margin-top:5rpx;" placeholder="搜索"/>
+        <input type="text" style="margin-top:5rpx;" placeholder="搜索" placeholder-style="text-align: center;"/>
     </view>
-    <canvas>
-
-    </canvas>
+   
 </view>
+

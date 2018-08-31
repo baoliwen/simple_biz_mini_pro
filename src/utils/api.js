@@ -11,7 +11,7 @@ export function requestApi (url, type, data) {
       method: type,
       header: {
         'content-type': 'application/json',
-        'platform':'wx'
+        'platform':'WX'
       },
       success: function (res) {
         if(res.statusCode === 500){
