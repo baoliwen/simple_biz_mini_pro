@@ -11,9 +11,25 @@ export function requestApi (url, type, data) {
       method: type,
       header: {
         'content-type': 'application/json',
-        'platform':'miniProgram'
+        'platform':'wx'
       },
       success: function (res) {
+        if(res.statusCode === 500){
+          wx.showToast({
+            title: '服务器异常',
+            icon: 'none',
+            duration: 1000
+          })
+          return;
+        }
+        if(res.data.code !== 200){
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 1000
+          })
+          return;
+        }
         resolve(res)
       },
       fail: function (error) {
