@@ -1,0 +1,12 @@
+.search-div{
+    width:470rpx;
+    border:5rpx solid gray;
+    border-radius:27rpx;
+    margin:0rpx auto;
+    padding-left:20rpx;
+    margin-top:25rpx;
+    height:60rpx;
+}
+.index-container{
+    height: 100%;
+}
