@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 
-import { requestApi } from './../../common/api'
+import { requestApi } from '../../utils/api'
 Page({
   data: {
     motto: 'Hello World',
