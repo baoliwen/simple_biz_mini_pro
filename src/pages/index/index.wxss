@@ -1,5 +1,5 @@
 .search-div{
-    width:470rpx;
+    width:80%;
     border:5rpx solid gray;
     border-radius:27rpx;
     margin:0rpx auto;
