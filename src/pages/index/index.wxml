@@ -2,6 +2,11 @@
     <view class="search-div">
         <input type="text" style="margin-top:5rpx;" placeholder="搜索" placeholder-style="text-align: center;"/>
     </view>
-   
+    <view class="footer">
+        <view class="footer-text">
+            <span style="color:white;">新增地址</span>
+        </view>
+    </view>
+
 </view>
 
