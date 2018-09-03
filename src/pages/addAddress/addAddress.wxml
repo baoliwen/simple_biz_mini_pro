@@ -13,9 +13,9 @@
             <view class="item">
                 <span>地址</span>
                 <view class="select-item">
-                    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+                    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}" name="provinceCityArea">
                         <p style="color:#10131E">
-                            {{region[0]}}，{{region[1]}}，{{region[2]}}
+                            {{region[0]}} {{region[1]}} {{region[2]}}
                         </p>
                     </picker>
                 </view>

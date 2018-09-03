@@ -42,4 +42,6 @@
 .item-btn button{
     color:#02A2FE;
     text-align:center;
+    width:25%;
+    height:85rpx;
 }
