@@ -18,6 +18,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  toAddAddress:function(){
+    wx.navigateTo({
+      url:'../addAddress/addAddress'
+    })
+  },
   onLoad: function () {
     let that = this;
     if(!app.globalData.openid){
@@ -31,22 +36,31 @@ Page({
     let keyword = that.data.keyword,//输入框字符串作为参数
         pageNum = that.data.pageNum,//把第几次加载次数作为参数
         pageSize =that.data.pageSize; //返回数据的个数
+    wx.showLoading({
+      title: '加载中',
+    })
     requestApi('address/page/list?openid='+app.globalData.openid+'&keyword='+keyword+'&pageNum='+pageNum+'&pageSize='+pageSize, 'GET', {}).then(response => {
+      wx.hideLoading();
       that.data.totalPageNum = Math.ceil(response.data.data.total / pageSize);
       that.data.records = response.data.data.records;
-        
+      if(that.data.totalPageNum > that.data.pageNum){
+        that.data.hasMoreData = true;
+      }else{
+        that.data.hasMoreData = false;
+      }
     }, err => {
+      wx.hideLoading();
       console.log(err)
     });
   },
-  searchScrollLower: function(){
+  onReachBottom: function(){
     let that = this;
     if(that.data.hasMoreData){
       that.setData({
         pageNum: that.data.pageNum+1,  //每次触发上拉事件，把searchPageNum+1
         isFromSearch: false  //触发到上拉事件，把isFromSearch设为为false
       });
-      that.fetchSearchList();
+      that.initData();
     }
   },
   setOpenid(){
@@ -88,6 +102,5 @@ Page({
         })
       }
     });
-    
   }
 })

@@ -1,0 +1,45 @@
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    height: 90rpx;
+    align-items: center;
+    width: 94%;
+    margin: 0 auto;
+    border-bottom: 1rpx solid #e8e8e8;
+}
+.item span{
+    display: block;
+    width: 100px;
+}
+.item input{
+    text-align: right;
+    flex: 1;
+}
+.item .select-item {
+    color: #10131E;
+    display: flex;
+    align-items: center;
+}
+.item .select-item p{
+    color: #10131E;
+}
+.item textarea {
+    font-size: 14px;
+    border-radius: 8rpx;
+    width: 100%;
+    margin: 0 auto;
+    background: #f5f6f6;
+    height: 100rpx;
+    padding: 10rpx 10rpx;
+    margin-top:20rpx;
+}
+.item-btn{
+    display:flex;
+    margin-top:15%;
+}
+.item-btn button{
+    color:#02A2FE;
+    text-align:center;
+}

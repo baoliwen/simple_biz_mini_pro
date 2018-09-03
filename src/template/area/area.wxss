@@ -1,0 +1,20 @@
+.template-area-picker {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.template-area-picker .addr-item {
+    line-height: 50px;
+    text-align: center;
+}
+
+.template-area-picker .show {
+    text-align: center;
+    margin: 20px;
+    height: 50px;
+}
+
+.template-area-picker .choose {
+    margin: 20px 0;
+}

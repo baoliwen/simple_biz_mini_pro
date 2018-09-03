@@ -1,0 +1,33 @@
+
+<view class="wrap">
+    <view class="add-address-container">
+        <form bindsubmit="submit" bindreset="reset">
+            <view class="item">
+                <span>姓名</span>
+                <input type="text" placeholder="请输入姓名" name="customerName"/>
+            </view>
+            <view class="item">
+                <span>联系电话</span>
+                <input type="text" placeholder="请输入联系电话" name="customerContact"/>
+            </view>
+            <view class="item">
+                <span>地址</span>
+                <view class="select-item">
+                    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+                        <p style="color:#10131E">
+                            {{region[0]}}，{{region[1]}}，{{region[2]}}
+                        </p>
+                    </picker>
+                </view>
+                
+            </view>
+            <view class="item">
+                <textarea placeholder="请输入详细住址信息，如道路、门牌号等" placeholder-style="color:#BCBCBC;" name="address" cols="30" rows="10"></textarea>
+            </view>
+            <view class="item-btn">
+                <button formType="reset">重置</button>
+                <button formType="submit">提交</button>
+            </view>
+        </form>
+    </view>
+</view>
