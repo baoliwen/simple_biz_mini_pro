@@ -14,6 +14,7 @@ export function requestApi (url, type, data) {
         'platform':'WX'
       },
       success: function (res) {
+        console.log(res);
         if(res.statusCode === 500){
           wx.showToast({
             title: '服务器异常',
@@ -21,7 +22,15 @@ export function requestApi (url, type, data) {
             duration: 1000
           })
           return;
+        }else if (res.statusCode !== 200){
+          wx.showToast({
+            title: res.data.error,
+            icon: 'none',
+            duration: 1000
+          })
+          return;
         }
+
         if(res.data.code !== 200){
           wx.showToast({
             title: res.data.msg,

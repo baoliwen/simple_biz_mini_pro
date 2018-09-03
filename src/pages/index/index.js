@@ -2,12 +2,15 @@
 //获取应用实例
 const app = getApp()
 import { requestApi } from '../../utils/api'
+const constant = require('../../utils/util');
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    keyword: '',
+    records: [],
+    pageNum: 1,
+    pageSize: constant.pageSize,
+    totalPageNum: 0,
+    hasMoreData: true
   },
   //事件处理函数
   bindViewTap: function() {
@@ -19,27 +22,48 @@ Page({
     let that = this;
     if(!app.globalData.openid){
       that.setOpenid();
+    }else{
+      that.initData();
     }
   },
   initData: function(){
-    requestApi('wechat/index?openid='+app.globalData.openid, 'GET', {}).then(response => {
-      
+    let that = this;
+    let keyword = that.data.keyword,//输入框字符串作为参数
+        pageNum = that.data.pageNum,//把第几次加载次数作为参数
+        pageSize =that.data.pageSize; //返回数据的个数
+    requestApi('address/page/list?openid='+app.globalData.openid+'&keyword='+keyword+'&pageNum='+pageNum+'&pageSize='+pageSize, 'GET', {}).then(response => {
+      that.data.totalPageNum = Math.ceil(response.data.data.total / pageSize);
+      that.data.records = response.data.data.records;
+        
     }, err => {
       console.log(err)
-    })
+    });
+  },
+  searchScrollLower: function(){
+    let that = this;
+    if(that.data.hasMoreData){
+      that.setData({
+        pageNum: that.data.pageNum+1,  //每次触发上拉事件，把searchPageNum+1
+        isFromSearch: false  //触发到上拉事件，把isFromSearch设为为false
+      });
+      that.fetchSearchList();
+    }
   },
   setOpenid(){
+    let that = this;
     wx.getUserInfo({
       withCredentials: true,
       success: function (infoData) {
         let userInfo = infoData.userInfo;
         wx.login({
           success: res => {
-            // 发送 res.code 到后台换取 openId, sessionKey, unionId
+            // 发送 res.code 到后台换取 openid, sessionKey, unionId
             if (res.code) {
               userInfo.loginCode = res.code;
               requestApi('wechat/login', 'POST', userInfo).then(response => {
-                app.globalData.openId=response.data.data.openid;
+                app.globalData.openid=response.data.data.openid;
+                app.globalData.userInfo = userInfo;
+                that.initData();
               }, err => {
                 console.log(err)
               })
