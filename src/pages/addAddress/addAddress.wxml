@@ -4,25 +4,26 @@
         <form bindsubmit="submit" bindreset="reset">
             <view class="item">
                 <span>姓名</span>
-                <input type="text" placeholder="请输入姓名" name="customerName"/>
+                <input type="text" placeholder="请输入姓名" name="customerName" value="{{customerName}}"/>
             </view>
             <view class="item">
                 <span>联系电话</span>
-                <input type="text" placeholder="请输入联系电话" name="customerContact"/>
+                <input type="text" placeholder="请输入联系电话" name="customerContact" value="{{customerContact}}"/>
             </view>
             <view class="item">
                 <span>地址</span>
                 <view class="select-item">
                     <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}" name="provinceCityArea">
                         <p style="color:#10131E">
-                            {{region[0]}} {{region[1]}} {{region[2]}}
+                            {{provinceName}} {{cityName}} {{districtName}}
                         </p>
                     </picker>
                 </view>
                 
             </view>
             <view class="item">
-                <textarea placeholder="请输入详细住址信息，如道路、门牌号等" placeholder-style="color:#BCBCBC;" name="address" cols="30" rows="10"></textarea>
+                <textarea placeholder="请输入详细住址信息，如道路、门牌号等" 
+                placeholder-style="color:#BCBCBC;" name="address" value="{{address}}"></textarea>
             </view>
             <view class="item-btn">
                 <button formType="reset">重置</button>

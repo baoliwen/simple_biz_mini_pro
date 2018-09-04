@@ -5,7 +5,7 @@
  * @param {Object} messages 验证字段的提示信息
  * 
  */
-class WxValidate {
+export class WxValidate {
     constructor(rules = {}, messages = {}) {
         Object.assign(this, {
             data: {},
@@ -414,5 +414,3 @@ class WxValidate {
         return this.errorList
     }
 }
-
-export default WxValidate
