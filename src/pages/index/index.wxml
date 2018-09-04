@@ -1,10 +1,10 @@
 <view class="index-container">
     <view class="search-div">
-        <input type="text" name="keyword" style="margin-top:5rpx;" placeholder="搜索" placeholder-style="text-align: center;" value="{{keyword}}"/>
+        <input type="text" name="keyword" style="margin-top:5rpx;" placeholder="搜索" placeholder-style="text-align: center;" value="{{keyword}}" />
     </view>
     <view class="search-result">
         <scroll-view scroll-y="true" bindscrolltolower="onReachBottom">
-            <view class="result-item" wx:for="{{records}}" wx:key="id"  data-data="{{item}}" >
+            <view class="result-item" wx:for="{{records}}" wx:key="id">
                 <text class="title">姓名:{{item.customerName}}</text>
                 <text class="title">联系电话:{{item.customerContact}}</text>
                 <view class="subtitle">
@@ -13,13 +13,11 @@
             </view>
             <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
             <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
-        </scroll-view>  
+        </scroll-view>
     </view>
-    
     <view class="footer">
         <view class="footer-text" bindtap="toAddAddress">
             <span style="color:white;">新增地址</span>
         </view>
     </view>
 </view>
-

@@ -16,6 +16,7 @@ Page({
     cityCode: '',
     districtCode: '',
     address: '',
+    openid:app.globalData.openid
   },
   //事件处理函数
   bindViewTap: function () {
@@ -86,12 +87,18 @@ Page({
     })
   },
   submit: function (e) {
-    const params = e.detail.value
+    const params = e.detail.value;
+    console.log(this.data);
     this.setData({
       customerName: params.customerName,
       customerContact: params.customerContact,
-      address: params.address
+      address: params.address,
+      openid:app.globalData.openid
     })
+    
+    
+    console.log(app.globalData);
+
     // 传入表单数据，调用验证方法
     if (!this.WxValidate.checkForm(this.data)) {
       const error = this.WxValidate.errorList[0]
@@ -99,8 +106,17 @@ Page({
       return false
     }
     console.log(this.data);
-    this.showModal({
-      msg: '提交成功',
+    requestApi('address/wx/save', 'POST', this.data).then(response => {
+      if(response.data.code === 200){
+        wx.navigateTo({
+          url: '../index/index'
+        })
+      }
+    }, err => {
+      this.showModal({
+        msg: '保存失败',
+      })
+      console.log(err)
     })
   }
 })

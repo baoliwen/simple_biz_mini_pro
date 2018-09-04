@@ -41,13 +41,17 @@ Page({
     })
     requestApi('address/page/list?openid='+app.globalData.openid+'&keyword='+keyword+'&pageNum='+pageNum+'&pageSize='+pageSize, 'GET', {}).then(response => {
       wx.hideLoading();
-      that.data.totalPageNum = Math.ceil(response.data.data.total / pageSize);
-      that.data.records = response.data.data.records;
+      console.log(response);
+      this.setData({
+        totalPageNum:Math.ceil(response.data.data.total / pageSize),
+        records:response.data.data.records
+      })
       if(that.data.totalPageNum > that.data.pageNum){
         that.data.hasMoreData = true;
       }else{
         that.data.hasMoreData = false;
       }
+      console.log(this.data);
     }, err => {
       wx.hideLoading();
       console.log(err)
