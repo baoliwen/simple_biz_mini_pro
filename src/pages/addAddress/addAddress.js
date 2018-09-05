@@ -72,7 +72,8 @@ Page({
       return this.WxValidate.optional(value) || (value.length >= 1 && value.length <= 2)
     }, '请勾选1-2个敲码助手')
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    console.log(options.id);
     this.initValidate();
   },
   bindRegionChange: function (e) {

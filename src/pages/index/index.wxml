@@ -9,14 +9,16 @@
 
     <view class="search-result">
         <scroll-view scroll-y="true" bindscrolltolower="loadMore" style="height:{{windowH?windowH+'px':'auto'}}" scroll-with-animation="true">
-            <view class="result-item" wx:for="{{records}}" wx:key="id">
-                <view class="line-decorate">
-                    <text></text>
-                </view>
-                <text class="title">姓名:{{item.customerName}}</text>
-                <text class="title">联系电话:{{item.customerContact}}</text>
-                <view class="subtitle">
-                    <text>{{item.address}}</text>
+            <view>
+                <view class="result-item" wx:for="{{records}}" wx:key="id" data-id="{{item.id}}" bindtap="addressDetail">
+                    <view class="line-decorate">
+                        <text></text>
+                    </view>
+                    <text class="title">姓名:{{item.customerName}}</text>
+                    <text class="title">联系电话:{{item.customerContact}}</text>
+                    <view class="subtitle">
+                        <text>{{item.address}}</text>
+                    </view>
                 </view>
             </view>
         </scroll-view>

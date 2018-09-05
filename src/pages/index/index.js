@@ -29,6 +29,11 @@ Page({
       url: '../addAddress/addAddress'
     })
   },
+  addressDetail: function(e){
+    wx.navigateTo({
+      url: '../addAddress/addAddress?id='+e.currentTarget.dataset.id
+    })
+  },
   onLoad: function () {
     let that = this;
     wx.getSystemInfo({
