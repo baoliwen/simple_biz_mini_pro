@@ -1,7 +1,7 @@
 {
   "pages":[
     "src/pages/index/index",
-    "src/pages/addAddress/addAddress",
+    "src/pages/address/address",
     "src/pages/authorize/authorize",
     "src/pages/logs/logs"
   ],
