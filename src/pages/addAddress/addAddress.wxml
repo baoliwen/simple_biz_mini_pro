@@ -4,11 +4,11 @@
         <form bindsubmit="submit" bindreset="reset">
             <view class="item">
                 <span>姓名</span>
-                <input type="text" placeholder="请输入姓名" name="customerName" value="{{customerName}}"/>
+                <input type="text" placeholder="请输入姓名" name="customerName" value="{{customerName}}" maxlength="20"/>
             </view>
             <view class="item">
                 <span>联系电话</span>
-                <input type="text" placeholder="请输入联系电话" name="customerContact" value="{{customerContact}}"/>
+                <input type="text" placeholder="请输入联系电话" name="customerContact" value="{{customerContact}}" maxlength="11"/>
             </view>
             <view class="item">
                 <span>地址</span>
@@ -23,7 +23,7 @@
             </view>
             <view class="item">
                 <textarea placeholder="请输入详细住址信息，如道路、门牌号等" 
-                placeholder-style="color:#BCBCBC;" name="address" value="{{address}}"></textarea>
+                placeholder-style="color:#BCBCBC;" name="address" value="{{address}}" maxlength="100"></textarea>
             </view>
             <view class="item-btn">
                 <button formType="reset">重置</button>

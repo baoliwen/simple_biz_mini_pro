@@ -38,3 +38,17 @@
 .index-search{
     display: flex;
 }
+.index-container .result-item{
+    padding:10rpx 0rpx;
+}
+.index-container .result-item .title{
+    padding:0rpx 20rpx;
+}
+.index-container .result-item .subtitle{
+    margin-top:3rpx;
+    padding:0rpx 20rpx;
+}
+.index-container .result-item .line-decorate{
+    border-bottom:solid 1px #ccc;
+    padding-top:10rpx;
+}

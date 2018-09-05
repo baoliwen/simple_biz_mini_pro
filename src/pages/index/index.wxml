@@ -7,20 +7,20 @@
         <view class="search-btn" bindtap="keywordSearch">搜索</view>
     </view>
 
-    <!-- <view class="search-result"> -->
-        <scroll-view scroll-y="true" bindscrolltolower="loadMore" style="height:{{windowH?windowH+'px':'auto'}}"scroll-with-animation="true" 
-            bindscrolltoupper="refresh">
-            <view class="result-item" wx:for="{{records}}" wx:key="id" data-data="{{item}}">
+    <view class="search-result">
+        <scroll-view scroll-y="true" bindscrolltolower="loadMore" style="height:{{windowH?windowH+'px':'auto'}}" scroll-with-animation="true">
+            <view class="result-item" wx:for="{{records}}" wx:key="id">
+                <view class="line-decorate">
+                    <text></text>
+                </view>
                 <text class="title">姓名:{{item.customerName}}</text>
                 <text class="title">联系电话:{{item.customerContact}}</text>
                 <view class="subtitle">
                     <text>{{item.address}}</text>
                 </view>
             </view>
-            <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
-            <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
         </scroll-view>
-    <!-- </view> -->
+    </view>
     <view class="footer">
         <view class="footer-text" bindtap="toAddAddress">
             <span style="color:white;">新增地址</span>

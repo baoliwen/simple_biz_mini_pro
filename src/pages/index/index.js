@@ -44,6 +44,9 @@ Page({
       that.initData();
     }
   },
+  onReachBottom:function(){
+    this.loadMore();
+  },
   initData: function () {
     let that = this;
     let keyword = that.data.keyword,//输入框字符串作为参数
@@ -54,18 +57,17 @@ Page({
     })
     requestApi('address/page/list?openid=' + app.globalData.openid + '&keyword=' + keyword + '&pageNum=' + pageNum + '&pageSize=' + pageSize, 'GET', {}).then(response => {
       wx.hideLoading();
-      console.log(response);
+      let records = this.data.records;
+      records = records.concat(response.data.data.records);
       this.setData({
         totalPageNum: Math.ceil(response.data.data.total / pageSize),
-        records: response.data.data.records
+        records: records
       })
-     
       if (that.data.totalPageNum > that.data.pageNum) {
         that.data.hasMoreData = true;
       } else {
         that.data.hasMoreData = false;
       }
-      console.log(this.data);
     }, err => {
       wx.hideLoading();
       console.log(err)
@@ -80,6 +82,7 @@ Page({
   },
   loadMore: function () {
     let that = this;
+    //debugger
     if (that.data.hasMoreData) {
       that.setData({
         pageNum: that.data.pageNum + 1,  //每次触发上拉事件，把searchPageNum+1
