@@ -25,9 +25,10 @@ Page({
     })
   },
   showModal(error) {
-    wx.showModal({
-      content: error.msg,
-      showCancel: false,
+    wx.showToast({
+      title: error.msg,
+      icon: 'none',
+      duration: 1000
     })
   },
   initValidate: function () {
@@ -75,7 +76,6 @@ Page({
     this.initValidate();
   },
   bindRegionChange: function (e) {
-    console.log(e.detail);
     this.setData({
       region: e.detail.value,
       provinceName: e.detail.value[0],
@@ -88,24 +88,19 @@ Page({
   },
   submit: function (e) {
     const params = e.detail.value;
-    console.log(this.data);
     this.setData({
       customerName: params.customerName,
       customerContact: params.customerContact,
       address: params.address,
       openid:app.globalData.openid
     })
-    
-    
-    console.log(app.globalData);
-
     // 传入表单数据，调用验证方法
     if (!this.WxValidate.checkForm(this.data)) {
       const error = this.WxValidate.errorList[0]
       this.showModal(error)
+      
       return false
     }
-    console.log(this.data);
     requestApi('address/wx/save', 'POST', this.data).then(response => {
       if(response.data.code === 200){
         wx.navigateTo({

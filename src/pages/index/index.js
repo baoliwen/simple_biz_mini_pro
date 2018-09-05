@@ -8,47 +8,61 @@ Page({
     keyword: '',
     records: [],
     pageNum: 1,
+    windowH:0,
     pageSize: constant.pageSize,
     totalPageNum: 0,
     hasMoreData: true
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
-  toAddAddress:function(){
+  bindKeywordInput: function (e) {
+    this.setData({
+      keyword: e.detail.value
+    })
+  },
+  toAddAddress: function () {
     wx.navigateTo({
-      url:'../addAddress/addAddress'
+      url: '../addAddress/addAddress'
     })
   },
   onLoad: function () {
     let that = this;
-    if(!app.globalData.openid){
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          windowH:res.windowHeight - 100
+        })
+      }
+    })
+    if (!app.globalData.openid) {
       that.setOpenid();
-    }else{
+    } else {
       that.initData();
     }
   },
-  initData: function(){
+  initData: function () {
     let that = this;
     let keyword = that.data.keyword,//输入框字符串作为参数
-        pageNum = that.data.pageNum,//把第几次加载次数作为参数
-        pageSize =that.data.pageSize; //返回数据的个数
+      pageNum = that.data.pageNum,//把第几次加载次数作为参数
+      pageSize = that.data.pageSize; //返回数据的个数
     wx.showLoading({
       title: '加载中',
     })
-    requestApi('address/page/list?openid='+app.globalData.openid+'&keyword='+keyword+'&pageNum='+pageNum+'&pageSize='+pageSize, 'GET', {}).then(response => {
+    requestApi('address/page/list?openid=' + app.globalData.openid + '&keyword=' + keyword + '&pageNum=' + pageNum + '&pageSize=' + pageSize, 'GET', {}).then(response => {
       wx.hideLoading();
       console.log(response);
       this.setData({
-        totalPageNum:Math.ceil(response.data.data.total / pageSize),
-        records:response.data.data.records
+        totalPageNum: Math.ceil(response.data.data.total / pageSize),
+        records: response.data.data.records
       })
-      if(that.data.totalPageNum > that.data.pageNum){
+     
+      if (that.data.totalPageNum > that.data.pageNum) {
         that.data.hasMoreData = true;
-      }else{
+      } else {
         that.data.hasMoreData = false;
       }
       console.log(this.data);
@@ -57,17 +71,23 @@ Page({
       console.log(err)
     });
   },
-  onReachBottom: function(){
+  keywordSearch: function () {
+    this.setData({  
+      pageNum: 1,   //第一次加载，设置1
+      records:[],  //放置返回数据的数组,设为空
+    })
+    this.initData();
+  },
+  loadMore: function () {
     let that = this;
-    if(that.data.hasMoreData){
+    if (that.data.hasMoreData) {
       that.setData({
-        pageNum: that.data.pageNum+1,  //每次触发上拉事件，把searchPageNum+1
-        isFromSearch: false  //触发到上拉事件，把isFromSearch设为为false
+        pageNum: that.data.pageNum + 1,  //每次触发上拉事件，把searchPageNum+1
       });
       that.initData();
     }
   },
-  setOpenid(){
+  setOpenid() {
     let that = this;
     wx.getUserInfo({
       withCredentials: true,
@@ -79,7 +99,7 @@ Page({
             if (res.code) {
               userInfo.loginCode = res.code;
               requestApi('wechat/login', 'POST', userInfo).then(response => {
-                app.globalData.openid=response.data.data.openid;
+                app.globalData.openid = response.data.data.openid;
                 app.globalData.userInfo = userInfo;
                 that.initData();
               }, err => {
@@ -88,7 +108,7 @@ Page({
             } else {
               console.log('获取用户登录态失败！' + res.errMsg)
             }
-          } 
+          }
         });
       },
       fail: function () {
