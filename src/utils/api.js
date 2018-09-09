@@ -1,6 +1,5 @@
 
-// var apiUrl = 'http://localhost:1002/';
-var apiUrl = 'http://47.96.123.28:80/';
+var apiUrl = 'http://localhost:1002/';
 // 获取sessionToken
     // 普通的get，post请求
 export function requestApi (url, type, data) {

@@ -115,6 +115,20 @@ Page({
       districtCode: e.detail.code[2]
     })
   },
+  reset: function(e){
+    this.setData({
+      region: ['', '', ''],
+      customerName: '',
+      customerContact: '',
+      provinceName: '请选择',
+      cityName: '',
+      districtName: '',
+      provinceCode: '',
+      cityCode: '',
+      districtCode: '',
+      address: ''
+    });
+  },
   submit: function (e) {
     const params = e.detail.value;
     this.setData({
