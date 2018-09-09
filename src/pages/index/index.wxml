@@ -19,7 +19,7 @@
         </view>
     </scroll-view>
     <view class="footer">
-        <view class="footer-text" bindtap="toAddAddress">
+        <view class="footer-text" bindtap="toAddress">
             <span style="color:white;">新增地址</span>
         </view>
     </view>

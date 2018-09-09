@@ -8,7 +8,7 @@
             </view>
             <view class="item">
                 <span>联系电话</span>
-                <input type="text" placeholder="请输入联系电话" name="customerContact" value="{{customerContact}}" maxlength="11"/>
+                <input type="number" placeholder="请输入联系电话" name="customerContact" value="{{customerContact}}" maxlength="11"/>
             </view>
             <view class="item">
                 <span>地址</span>

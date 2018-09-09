@@ -43,10 +43,10 @@ Page({
         minlength: 3,
         maxlength: 20
       }, provinceName: {
-        required: true,
+        required: true
 
       }, cityName: {
-        required: true,
+        required: true
 
       }
     }
@@ -75,6 +75,9 @@ Page({
   },
   onLoad: function (options) {
     if (options.id) {
+      wx.setNavigationBarTitle({
+        title: '编辑地址' 
+      })
       requestApi('address/wx/detail?addressId=' + options.id, 'GET', this.data).then(response => {
         if (response.data.code === 200) {
           this.setData({
